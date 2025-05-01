@@ -1,0 +1,101 @@
+/* options.css - Updated */
+:root {
+  --google-blue: #1a73e8;
+  --google-blue-darker: #185abc; /* For hover */
+  --primary-text-color: #202124;
+  --secondary-text-color: #5f6368;
+  --bg-color: #f8f9fa; /* Light grey background */
+  --input-bg-color: #ffffff;
+  --border-color: #dadce0;
+  --input-border-color: #80868b; /* Slightly darker for inputs */
+  --input-focus-border: var(--google-blue);
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--primary-text-color);
+  padding: 24px;
+  margin: 0;
+  min-width: 350px; /* Ensure enough space */
+}
+
+h1 {
+  font-size: 1.3em;
+  font-weight: 500;
+  margin: 0 0 24px 0;
+  color: var(--primary-text-color);
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.875em; /* 14px */
+  font-weight: 500;
+  color: var(--secondary-text-color);
+}
+
+input[type="text"],
+input[type="datetime-local"] {
+  box-sizing: border-box; /* Include padding and border in element's total width/height */
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.95em; /* 15px */
+  color: var(--primary-text-color);
+  background-color: var(--input-bg-color);
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+  transition: border-color 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="datetime-local"]:focus {
+  border-color: var(--input-focus-border);
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 1px var(--input-focus-border); /* Subtle focus ring */
+}
+
+input::placeholder {
+  color: var(--secondary-text-color);
+  opacity: 0.7;
+}
+
+.form-actions {
+    margin-top: 24px;
+    text-align: right; /* Align button to the right */
+}
+
+/* Shared button base styles */
+button {
+  padding: 9px 24px; /* Google style padding */
+  font-size: 0.875em; /* 14px */
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  text-transform: capitalize; /* Or uppercase if preferred */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Primary action button (Save) */
+.button-primary {
+  background-color: var(--google-blue);
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: var(--google-blue-darker);
+  box-shadow: 0 1px 2px 0 rgba(66,133,244,.3), 0 1px 3px 1px rgba(66,133,244,.15);
+}
+
+/* Status message styling (optional) */
+#status-message {
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: var(--google-blue);
+  text-align: center;
+}

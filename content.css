@@ -1,0 +1,316 @@
+/* content.css - Updated/Refined */
+
+/* -------------------------------------------- */
+/* 1. Material-style palette variables        */
+/* -------------------------------------------- */
+:root {
+  /* Light theme */
+  --light-bg: #ffffff;
+  --light-text-primary: #202124;
+  --light-text-secondary: #5f6368;
+  --light-border: #dadce0;
+  --light-divider: #e0e0e0;
+  --light-input-bg: #f1f3f4;
+  --light-btn-bg: #f8f9fa;
+  --light-btn-fg: #3c4043;
+  --light-btn-hover-bg: #f1f3f4;
+  --light-btn-secondary-bg: #e8eaed;
+  --light-btn-secondary-fg: #3c4043;
+  --light-btn-secondary-hover-bg: #dadce0;
+
+  /* Dark theme */
+  --dark-bg: #202124;
+  --dark-text-primary: #e8eaed;
+  --dark-text-secondary: #9aa0a6;
+  --dark-border: #3c4043; /* Slightly lighter border */
+  --dark-divider: #3c4043;
+  --dark-input-bg: #303134;
+  --dark-btn-bg: #3c4043;
+  --dark-btn-fg: #e8eaed;
+  --dark-btn-hover-bg: #5f6368;
+  --dark-btn-secondary-bg: #303134;
+  --dark-btn-secondary-fg: #e8eaed;
+  --dark-btn-secondary-hover-bg: #3c4043;
+
+  /* Accent (Google Blue) */
+  --accent-blue: #1a73e8;
+  --accent-blue-darker: #185abc;
+
+  /* Shared */
+  --focus-ring-color: var(--accent-blue);
+  --border-radius: 8px; /* Consistent radius */
+  --button-radius: 4px;
+}
+
+/* -------------------------------------------- */
+/* 2. Base container & typography               */
+/* -------------------------------------------- */
+#registration-timer-container {
+  position: fixed;
+  width: 280px; /* Match popup width */
+  border-radius: var(--border-radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px; /* Base font size */
+  z-index: 2147483647; /* Max z-index */
+  overflow: hidden;
+  border: 1px solid; /* Border color set by theme */
+  display: none; /* Start hidden */
+
+  /* Default to dark theme */
+  background-color: var(--dark-bg);
+  color: var(--dark-text-primary);
+  border-color: var(--dark-border);
+}
+
+#registration-timer-container.light-theme {
+  background-color: var(--light-bg);
+  color: var(--light-text-primary);
+  border-color: var(--light-border);
+}
+
+/* -------------------------------------------- */
+/* 3. Header                                   */
+/* -------------------------------------------- */
+#timer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 8px 8px 16px; /* More padding left */
+  cursor: move; /* Default cursor */
+  border-bottom: 1px solid; /* Divider color set by theme */
+}
+#registration-timer-container.light-theme #timer-header {
+  border-bottom-color: var(--light-divider);
+}
+#registration-timer-container.dark-theme #timer-header {
+  border-bottom-color: var(--dark-divider);
+}
+#timer-header.locked { /* Style when locked */
+    cursor: default;
+}
+
+#timer-event-name {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 8px; /* Space before buttons */
+}
+
+.hdr-buttons {
+  display: flex;
+  gap: 4px; /* Reduced gap */
+}
+
+.hdr-buttons button {
+  background: transparent;
+  color: inherit;
+  border: none;
+  font-size: 1.2em; /* Adjust icon size if needed */
+  width: 32px; /* Standard icon button size */
+  height: 32px;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%; /* Circular icon buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+#registration-timer-container.light-theme .hdr-buttons button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+#registration-timer-container.dark-theme .hdr-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* -------------------------------------------- */
+/* 4. Countdown display                        */
+/* -------------------------------------------- */
+#timer-display {
+  padding: 16px 16px 12px 16px; /* More vertical padding */
+  text-align: center;
+  /* Removed background/border - let container bg show through */
+}
+
+#timer-countdown-display {
+  font-size: 2em; /* Larger display */
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  color: var(--accent-blue); /* Use accent color for timer */
+}
+#registration-timer-container.dark-theme #timer-countdown-display {
+    color: #8ab4f8; /* Lighter blue for dark mode */
+}
+#timer-countdown-display.expired {
+    font-size: 1.3em; /* Smaller when text */
+    font-weight: normal;
+    color: var(--dark-text-secondary); /* Or an error color */
+}
+#registration-timer-container.light-theme #timer-countdown-display.expired {
+    color: var(--light-text-secondary);
+}
+
+
+/* -------------------------------------------- */
+/* 5. Controls                                 */
+/* -------------------------------------------- */
+#timer-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically align buttons */
+  padding: 8px 12px 12px 12px; /* Adjust padding */
+  gap: 8px;
+}
+
+/* Base button style for controls */
+#timer-controls button {
+  border: none;
+  border-radius: var(--button-radius);
+  padding: 6px 12px; /* Adjust padding */
+  font-size: 0.875em; /* 14px */
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 64px; /* Minimum width */
+  text-align: center;
+}
+
+/* Icon buttons (Pause/Edit) */
+#timer-pause-btn, #timer-edit-btn {
+    padding: 6px; /* Square padding for icons */
+    min-width: 32px; /* Smaller min-width */
+    font-size: 1.1em; /* Icon size */
+}
+
+/* Light Theme Controls Buttons */
+#registration-timer-container.light-theme #timer-controls button {
+    background-color: var(--light-btn-secondary-bg);
+    color: var(--light-btn-secondary-fg);
+}
+#registration-timer-container.light-theme #timer-controls button:hover {
+    background-color: var(--light-btn-secondary-hover-bg);
+}
+
+/* Dark Theme Controls Buttons */
+#registration-timer-container.dark-theme #timer-controls button {
+    background-color: var(--dark-btn-secondary-bg);
+    color: var(--dark-btn-secondary-fg);
+}
+#registration-timer-container.dark-theme #timer-controls button:hover {
+    background-color: var(--dark-btn-secondary-hover-bg);
+}
+
+/* -------------------------------------------- */
+/* 6. Inline settings form                     */
+/* -------------------------------------------- */
+#timer-settings-form {
+  display: none; /* Keep hidden initially */
+  flex-direction: column;
+  gap: 12px; /* Space between elements */
+  padding: 16px;
+  border-top: 1px solid; /* Divider */
+}
+#registration-timer-container.light-theme #timer-settings-form {
+  border-top-color: var(--light-divider);
+  background-color: var(--light-bg); /* Match container */
+}
+#registration-timer-container.dark-theme #timer-settings-form {
+  border-top-color: var(--dark-divider);
+  background-color: var(--dark-bg); /* Match container */
+}
+
+/* Inputs */
+#timer-settings-form input[type="text"],
+#timer-settings-form input[type="datetime-local"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 9px 12px; /* Match options page inputs */
+  border: 1px solid;
+  border-radius: var(--button-radius);
+  font-size: 0.9em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#timer-settings-form input:focus {
+    outline: none;
+    border-color: var(--focus-ring-color);
+    box-shadow: 0 0 0 1px var(--focus-ring-color);
+}
+
+/* Light theme inputs */
+#registration-timer-container.light-theme #timer-settings-form input {
+  background-color: var(--light-input-bg);
+  color: var(--light-text-primary);
+  border-color: var(--light-border);
+}
+
+/* Dark theme inputs */
+#registration-timer-container.dark-theme #timer-settings-form input {
+  background-color: var(--dark-input-bg);
+  color: var(--dark-text-primary);
+  border-color: var(--dark-border);
+}
+
+/* Form Buttons */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons right */
+    gap: 8px;
+    margin-top: 4px; /* Small space above buttons */
+}
+
+#timer-settings-form button {
+  border: none;
+  border-radius: var(--button-radius);
+  padding: 8px 16px; /* Standard button padding */
+  font-size: 0.875em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Primary Save Button */
+#timer-settings-form button.primary {
+  background-color: var(--accent-blue);
+  color: #ffffff;
+}
+#timer-settings-form button.primary:hover {
+  background-color: var(--accent-blue-darker);
+}
+/* Dark theme primary might need different hover */
+#registration-timer-container.dark-theme #timer-settings-form button.primary:hover {
+  background-color: #5c9ced; /* Lighter blue hover */
+}
+
+/* Secondary Cancel Button */
+#timer-settings-form button.secondary {
+    /* Styles applied via theme below */
+}
+
+/* Light theme secondary button */
+#registration-timer-container.light-theme #timer-settings-form button.secondary {
+  background-color: var(--light-btn-secondary-bg);
+  color: var(--light-btn-secondary-fg);
+}
+#registration-timer-container.light-theme #timer-settings-form button.secondary:hover {
+  background-color: var(--light-btn-secondary-hover-bg);
+}
+
+/* Dark theme secondary button */
+#registration-timer-container.dark-theme #timer-settings-form button.secondary {
+  background-color: var(--dark-btn-secondary-bg);
+  color: var(--dark-btn-secondary-fg);
+}
+#registration-timer-container.dark-theme #timer-settings-form button.secondary:hover {
+  background-color: var(--dark-btn-secondary-hover-bg);
+}
+
+/* -------------------------------------------- */
+/* 7. Drag feedback (No change needed)         */
+/* -------------------------------------------- */
+.dragging {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+  opacity: 0.95;
+}

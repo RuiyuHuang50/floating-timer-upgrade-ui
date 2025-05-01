@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown Timer Options</title>
+    <link rel="stylesheet" href="options.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Countdown Timer Options</h1>
+
+    <div class="form-field">
+      <label for="event-name-input">Event Name (Optional):</label>
+      <input
+        id="event-name-input"
+        type="text"
+        placeholder="E.g., Concert Tickets Phase 1"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="target-datetime-input">Registration Date and Time:</label>
+      <input id="target-datetime-input" type="datetime-local" />
+    </div>
+
+    <div class="form-actions">
+        <button id="save-btn" class="button-primary">Save Settings</button>
+    </div>
+
+    <div id="status-message" aria-live="polite"></div> </body>
+  <script src="options.js"></script>
+</html>

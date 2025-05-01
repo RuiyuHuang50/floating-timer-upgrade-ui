@@ -1,0 +1,97 @@
+/* popup.css - Updated */
+:root {
+  --google-blue: #1a73e8;
+  --primary-text-color: #202124;
+  --secondary-text-color: #5f6368;
+  --bg-color: #ffffff;
+  --border-color: #dadce0;
+  --button-hover-bg: rgba(60, 64, 67, 0.08); /* Subtle grey for hover */
+  --error-color: #d93025;
+  --error-bg: #fce8e6;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  width: 280px;
+  padding: 16px;
+  background-color: var(--bg-color);
+  color: var(--primary-text-color);
+  margin: 0;
+}
+
+h1 {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+  color: var(--primary-text-color);
+  text-align: left;
+}
+
+#event-name {
+  font-size: 0.875em; /* 14px */
+  color: var(--secondary-text-color);
+  margin-bottom: 12px;
+  min-height: 1.2em;
+  text-align: left;
+  font-style: italic;
+  word-wrap: break-word;
+}
+
+#countdown-display {
+  font-size: 1.75em;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  color: var(--google-blue);
+  background-color: var(--bg-color);
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+  min-height: 1.5em;
+}
+
+#countdown-display.expired {
+  color: var(--error-color);
+  border-color: var(--error-bg);
+  background-color: var(--error-bg);
+  font-size: 1.1em;
+  font-weight: normal;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+#reset-btn {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  width: 36px;
+  height: 36px;
+}
+
+#reset-btn:hover {
+  background-color: var(--button-hover-bg);
+}
+
+#reset-btn img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+#message {
+  margin-top: 16px;
+  font-size: 0.875em;
+  color: var(--secondary-text-color);
+  text-align: center;
+}
