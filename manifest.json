@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Floating Countdown Timer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Displays a floating countdown timer (with ms) on any page for event registrations.",
   "icons": {
     "16": "icon.png",
@@ -17,7 +17,7 @@
     "default_title": "Toggle Countdown Timer"
   },
   "options_page": "options.html",
-  "permissions": ["storage", "alarms", "notifications", "tabs", "scripting"],
+  "permissions": ["storage", "alarms", "notifications", "scripting"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [
     {
